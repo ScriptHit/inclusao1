@@ -4,101 +4,107 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Apresentação com VLibras</title>
+    <title>Tecnologias a favor da inclusão</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+	<link rel="icon" href="cadeira.png" type="image/png">
+
     <style>
         body {
             font-family: 'Roboto', sans-serif;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            min-height: 100vh;
+            justify-content: space-between; /* Espaçamento entre elementos */
+            min-height: 100vh; /* Altura mínima para preencher a tela */
             background-color: #f7f9fc;
             margin: 0;
-            padding: 20px;
+            padding: 2vh;
             transition: background-color 0.3s;
         }
 
         h1 {
             color: #34495e;
-            font-size: 2.5em;
-            margin-bottom: 20px;
+            font-size: 4vw;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.05);
             text-align: center;
-        }
-
-        #speakBtn {
-            background: none;
-            border: none;
-            font-size: 1.5em;
-            cursor: pointer;
-            margin-left: 10px;
-            vertical-align: middle;
-            color: #34495e;
-        }
-
-        #speakBtn:hover {
-            opacity: 0.8;
+            margin: 2vh 0;
         }
 
         .container {
             display: flex;
-            flex-direction: column;
-            gap: 20px;
-            background-color: #ffffff;
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            align-items: center;
-            max-width: 500px;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 2vh;
             width: 100%;
         }
 
-        #slide,
-        #vlibras {
-            width: 100%;
+        #slide, #vlibras {
             border-radius: 15px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             transition: box-shadow 0.3s;
+            max-width: 100%;
             object-fit: cover;
+        }
+
+        #slide {
+            width: 60vw;
+        }
+
+        #vlibras {
+            width: 30vw;
         }
 
         .buttons {
             display: flex;
-            gap: 20px;
-            margin-top: 20px;
+            gap: 1vw;
             justify-content: center;
             width: 100%;
+            margin-top: 2vh;
         }
 
         button {
-            padding: 10px 20px;
+            padding: 1vw 2vw;
             background-color: #e74c3c;
             color: #fff;
             border: none;
             border-radius: 8px;
             cursor: pointer;
-            transition: background-color 0.3s, transform 0.3s;
+            font-size: 1.5vw;
             font-weight: 700;
         }
 
         button:hover {
             background-color: #c0392b;
-            transform: scale(1.05);
         }
 
         #audioPlayer {
-            margin-top: 15px;
-            width: 100%;
+            width: 80%;
+            margin-top: 2vh;
         }
+
+        @media only screen and (max-width: 600px) {
+            #slide {
+                width: 90vw;
+            }
+
+            #vlibras {
+                width: 80vw;
+            }
+
+            h1 {
+                font-size: 8vw;
+            }
+
+            button {
+                font-size: 4vw;
+            }
+        }
+
     </style>
 </head>
 
 <body>
-    <h1>
-        TECNOLOGIAS A FAVOR DA INCLUSÃO
-        <button id="speakBtn" aria-label="Leia o título em voz alta">🔊</button>
-    </h1>
+    <h1>TECNOLOGIAS A FAVOR DA INCLUSÃO</h1>
     <div class="container">
         <img id="slide" src="slide1.png" alt="Slide 1">
         <video id="vlibras" controls loop>
@@ -114,7 +120,6 @@
         <button onclick="voltarSlide()">Voltar Slide</button>
         <button onclick="mudarSlide()">Próximo Slide</button>
     </div>
-
     <script>
         let slideAtual = 1;
         const totalSlides = 30;
@@ -147,12 +152,8 @@
 
         document.getElementById('audioPlayer').playbackRate = 1.5;
         document.getElementById('vlibras').playbackRate = 1.5;
-
-        document.getElementById('speakBtn').addEventListener('click', function() {
-            const titleText = "TECNOLOGIAS A FAVOR DA INCLUSÃO";
-            const utterance = new SpeechSynthesisUtterance(titleText);
-            window.speechSynthesis.speak(utterance);
-        });
     </script>
+
 </body>
+
 </html>
