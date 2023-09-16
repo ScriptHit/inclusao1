@@ -35,34 +35,29 @@
             border-radius: 15px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             align-items: start;
+            flex-wrap: wrap; /* Permitindo que os itens se ajustem conforme o espaço disponível */
         }
 
-        #slide {
-            width: 400px;
-            height: 225px;
+        #slide, #vlibras {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
             object-fit: cover;
             border-radius: 15px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             transition: box-shadow 0.3s;
-        }
-
-        #vlibras {
-            width: 150px;   /* Aumentando a largura para 150px */
-            height: 267px;  /* A altura é ajustada para manter a proporção 9:16 */
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transition: box-shadow 0.3s;
-            object-fit: cover;
+            margin: 10px;
         }
 
         .buttons {
             display: flex;
             gap: 20px;
             margin-top: 30px;
+            flex-wrap: wrap; /* Permitindo que os botões se ajustem conforme o espaço disponível */
         }
 
         button {
-            padding: 15px 30px;
+            padding: 10px 20px;
             background-color: #e74c3c;
             color: #fff;
             border: none;
@@ -70,6 +65,8 @@
             cursor: pointer;
             transition: background-color 0.3s, transform 0.3s;
             font-weight: 700;
+            flex: 1; /* Fazendo os botões ocuparem todo o espaço disponível */
+            text-align: center;
         }
 
         button:hover {
@@ -78,8 +75,27 @@
         }
 
         #audioPlayer {
+            width: 100%;
+            max-width: 400px;
             margin-top: 20px;
         }
+
+        /* Ajustes para dispositivos com tela menor que 768px */
+        @media only screen and (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            .container {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            #slide, #vlibras {
+                width: 90%;
+            }
+        }
+
     </style>
 </head>
 
@@ -103,7 +119,7 @@
 
     <script>
         let slideAtual = 1;
-        const totalSlides = 30; // Total de 30 slides
+        const totalSlides = 30;
 
         function mudarSlide() {
             slideAtual++;
@@ -124,14 +140,15 @@
         function atualizarSlide() {
             document.getElementById('slide').src = `slide${slideAtual}.png`;
             document.getElementById('vlibras').children[0].src = `libras${slideAtual}.mp4`;
-            document.getElementById('vlibras').load(); // Recarrega o vídeo
+            document.getElementById('vlibras').load();
+            document.getElementById('vlibras').playbackRate = 1.5;
             document.getElementById('audioPlayer').children[0].src = `audio${slideAtual}.wav`;
-            document.getElementById('audioPlayer').load(); // Recarrega o player de áudio
-            document.getElementById('audioPlayer').playbackRate = 1.5; // Define a velocidade de reprodução para 1.5x
+            document.getElementById('audioPlayer').load();
+            document.getElementById('audioPlayer').playbackRate = 1.5;
         }
 
-        // Define a velocidade de reprodução do áudio do primeiro slide para 1.5x
         document.getElementById('audioPlayer').playbackRate = 1.5;
+        document.getElementById('vlibras').playbackRate = 1.5;
     </script>
 
 </body>
